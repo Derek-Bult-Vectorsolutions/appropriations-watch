@@ -269,7 +269,7 @@ const REPORT = {
   deadline: {
     label: "Next funding deadline — CR expires",
     date: "2026-12-11",
-    note: "Shutdown averted: the House passed the Senate's CR (H.R. 6500, Continuing Appropriations and Extensions Act, 2027) 370–48 on Sept 1, 2026 under suspension of the rules, and it has been signed into law — funding the government at FY26 levels through Dec 11, 2026, pushing the fight past the November midterms. Senate Appropriations still has not agreed on FY2027 topline numbers, so no Senate committee markups have occurred on any of the 12 bills; House Appropriations has passed all 12 bills out of committee, and MilCon-VA (H.R. 8469) additionally cleared a House floor procedural vote 214-208 (May 13, 2026). Next deadline is Dec 11 — either a full-year FY27 deal or another CR."
+    note: "Shutdown averted: the House passed the Senate's continuing resolution (H.R. 6500, Continuing Appropriations and Extensions Act, 2027) 370-48 on Sept 1, 2026 under suspension of the rules, and it was signed into law — funding the government at FY26 levels through Dec 11, 2026, pushing the fight past the November midterms. The enacted CR restores language prohibiting fund transfers to Border Patrol without reform conditions (dropped in an earlier House-only draft) and delays the OMB Uniform Guidance rule and a new hemp/THC restriction to Dec 11. Senate Appropriations still has not agreed on FY2027 topline numbers, so no Senate committee markups have occurred on any of the 12 bills; House Appropriations has passed all 12 bills out of committee. Next deadline is Dec 11 — either a full-year FY27 deal or another CR."
   },
   committees: [
     { name: "House/Senate Defense, Military Construction & VA Subcommittees", covers: "DOD, VA, military construction", next: "House: H.R. 8469 (MilCon-VA) passed procedural vote 214–208 (May 2026). Hearing: Industrial Base & Workforce (Sept 4, 2026). Senate: awaits topline." },
@@ -289,34 +289,91 @@ const REPORT = {
   },
   agencies: [
     { key: "dhs-oia", name: "DHS - Office of Intelligence and Analysis", findings: [
-      { id: "dhs-oia-1", summary: "FY2027 budget allocation for intelligence and analysis operations. Training and operational updates pending committee approval.", source: "", date: "2026-09-03", firstSeen: "2026-09-03" }
+      { id: "dhsia-1", summary: "FY2026 enacted: House bill provided $340.8M for Intelligence, Analysis & Situational Awareness; Senate explanatory statement shows $371.9M.", source: "https://www.congress.gov/committee-report/119th-congress/house-report/173/1", date: "2025-06-24", firstSeen: "2026-08-31" },
+      { id: "dhsia-2", summary: "H.Rept. 119-173 requires semiannual intelligence briefings to Congress and bars certain collection on U.S. persons.", source: "https://www.congress.gov/committee-report/119th-congress/house-report/173/1", date: "2025", firstSeen: "2026-08-31" },
+      { id: "dhsia-3", summary: "FY2027 budget request proposes eliminating I&A as a standalone line by folding it into a new office reporting directly to the Secretary; reporting indicates it would remain under ODNI oversight.", source: "https://www.congress.gov/crs-product/R48979", date: "2026-04-03", firstSeen: "2026-08-31" },
+      { id: "dhsia-4", summary: "FY2027 Intelligence Authorization Act (S. 4615) restricts I&A's Open Source Intelligence Division domestic-terrorism staffing to 2023 levels; passed Senate Intel Committee 14-3.", source: "https://www.intelligence.senate.gov/2026/05/20/intelligence-authorization-act-for-fiscal-year-2027-as-reported-on-may-20-2026/", date: "2026-05-20", firstSeen: "2026-08-31" }
     ]},
     { key: "doe-kcnsc", name: "DOE - Kansas City Nuclear Security Campus", findings: [
-      { id: "doe-kcnsc-1", summary: "Nuclear security facility funding approved in Energy and Water Appropriations bill. Workforce development initiatives included.", source: "", date: "2026-09-03", firstSeen: "2026-09-03" }
+      { id: "kcnsc-1", summary: "Operating budget near $1.6B for FY2026, projected past $2.2B in FY2027; mid-way through a ~$6.4B, 15-phase expansion (KC NExT) adding 2.5M sq ft.", source: "https://www.axios.com/local/kansas-city/2026/06/04/a-national-defense-production-site-in-kc-is-expanding", date: "2026-06-04", firstSeen: "2026-08-31" },
+      { id: "kcnsc-2", summary: "NNSA Weapons Activities account (funds KCNSC) rises from FY26 enacted $20.378B to FY27 request $27.441B (+35%); House E&W hearing Apr 15, 2026 questioned pit-production strategy/costs.", source: "https://www.congress.gov/crs-product/R48946", date: "2026-04-15", firstSeen: "2026-08-31" },
+      { id: "kcnsc-3", summary: "DOE/NNSA held public hearings in Kansas City (May 6-8, 2026) on environmental review tied to ramped-up plutonium production.", source: "https://missouriindependent.com/2026/05/08/public-hearings-come-to-kansas-city-as-us-ramps-up-plutonium-production-for-nuclear-weapons/", date: "2026-05-08", firstSeen: "2026-08-31" }
     ]},
     { key: "dhs-cbp", name: "DHS - Customs and Border Protection", findings: [
-      { id: "dhs-cbp-1", summary: "CBP training and operations funding included in Homeland Security Appropriations. Border security enhancements funded.", source: "", date: "2026-09-03", firstSeen: "2026-09-03" }
+      { id: "cbp-1", summary: "FY2026 enacted: Senate bill gave CBP $22.6B, incl. $19.1B to hire/pay/train/equip Border Patrol.", source: "https://www.appropriations.senate.gov/imo/media/doc/fy26_homeland_security_report.pdf", date: "2026", firstSeen: "2026-08-31" },
+      { id: "cbp-2", summary: "FY2027 request adds $18.5B for CBP (~44% increase); House FY27 bill (H.Rept. 119-697) recommends $18.27B, $6.6B above FY26.", source: "https://www.congress.gov/committee-report/119th-congress/house-report/697/1", date: "2026-06-11", firstSeen: "2026-08-31" },
+      { id: "cbp-3", summary: "House subcommittee markup fully funds 22,000 Border Patrol Agents, keeps 41,500 ICE detention beds, doubles body-worn-camera funding to $40M.", source: "https://appropriations.house.gov/news/press-releases/amodei-cole-fy27-homeland-security-subcommittee-markup", date: "2026-06-05", firstSeen: "2026-08-31" },
+      { id: "cbp-4", summary: "$4B from OBBBA funds 8,500 new CBP hires incl. $285M in bonuses; new agents can get up to $60,000 in incentives.", source: "https://www.govexec.com/pay-benefits/2025/12/dhs-opens-new-60k-bonuses-border-patrol-agents-other-officers/410271/", date: "2025-12", firstSeen: "2026-08-31" },
+      { id: "cbp-5", summary: "Border Patrol Academy (Artesia, NM) enrollment surged to ~1,100 trainees, highest since 2009; extended core-training program begins July 2026.", source: "https://www.govexec.com/pay-benefits/2025/12/dhs-opens-new-60k-bonuses-border-patrol-agents-other-officers/410271/", date: "2025-12", firstSeen: "2026-08-31" },
+      { id: "cbp-6", summary: "CBP published a Federal Register final rule establishing four expanded maritime Customs-Enforcement Areas, extending enforcement jurisdiction from 12 to 24 nautical miles; effective immediately.", source: "https://www.federalregister.gov/documents/2026/08/25/2026-17354/establishment-of-four-customs-enforcement-areas", date: "2026-08-25", firstSeen: "2026-09-01" },
+      { id: "cbp-7", summary: "The enacted CR (H.R. 6500, signed Sept 1-2, 2026) restores language prohibiting transfer of funds to Border Patrol without reform conditions.", source: "https://democrats-appropriations.house.gov/news/fact-sheets/republican-continuing-resolution-allows-billions-border-patrol-no-reforms", date: "2026-09-01", firstSeen: "2026-09-03", NEW: true }
     ]},
     { key: "dhs-uscis", name: "DHS - USCIS - Office of Human Capital and Training", findings: [
-      { id: "dhs-uscis-1", summary: "USCIS human capital and training programs approved for FY2027. Professional development initiatives funded.", source: "", date: "2026-09-03", firstSeen: "2026-09-03" }
+      { id: "uscis-1", summary: "USCIS is fee-funded, not primarily discretionary; FY26 CBJ requests $111.1M/321 positions overall.", source: "https://www.uscis.gov/sites/default/files/document/data/25_0613_uscis_fy26-congressional-budget-justificatin.pdf", date: "2025-06-13", firstSeen: "2026-08-31" },
+      { id: "uscis-2", summary: "USCIS workforce fell to 20,241 in June 2026, down 11.2% from Jan 2025 peak amid DOGE-driven separations.", source: "https://www.federalhiringdata.com/articles/uscis-recruiting-frontline-officer-pipeline-2026", date: "2026-06", firstSeen: "2026-08-31" },
+      { id: "uscis-3", summary: "USCIS reassigned New England employees to Minnesota to assist ICE operations.", source: "https://moulton.house.gov/sites/evo-subsites/moulton.house.gov/files/evo-media-document/rep-moulton-letter-re-new-england-uscis-employee-reassignments-1.pdf", date: "2026", firstSeen: "2026-08-31" }
     ]},
-    { key: "dhs-ice", name: "DHS - Immigration and Customs Enforcement", findings: []},
-    { key: "doe-crad", name: "DOE - Counterterrorism Operations Support", findings: []},
-    { key: "dhs-ss", name: "DHS - U.S. Secret Service", findings: []},
-    { key: "dhs-fletc", name: "DHS - Federal Law Enforcement Training Accreditation", findings: []},
-    { key: "doj-dea", name: "DOJ - Drug Enforcement Administration - Office of Training", findings: []},
-    { key: "va-academy", name: "VA - Veterans Affairs - Academy", findings: []},
-    { key: "dhs-tsa", name: "DHS - TSA - Federal Air Marshal Service - Training Center", findings: []},
-    { key: "doi-bia", name: "DOI - BIA US Indian Police Academy", findings: []},
-    { key: "dhs-fps", name: "DHS - Federal Protective Service", findings: []}
+    { key: "dhs-ice", name: "DHS - Immigration and Customs Enforcement", findings: [
+      { id: "ice-1", summary: "OBBBA (signed Jul 4, 2025) gave ICE ~$30B to hire 10,000 ERO officers and 1,000 HSI agents; ~$75B for ICE overall.", source: "https://www.npr.org/2026/01/21/nx-s1-5674887/ice-budget-funding-congress-trump", date: "2025-07-04", firstSeen: "2026-08-31" },
+      { id: "ice-2", summary: "Hiring blitz added ~12,000 officers in under a year; FLETC basic training cut from 13 weeks to as little as 6, removing 40%+ of instruction.", source: "https://www.military.com/daily-news/headlines/2026/01/06/ice-hiring-surge-triggers-oversight-concerns-over-training-standards.html", date: "2026-01-06", firstSeen: "2026-08-31" },
+      { id: "ice-3", summary: "House Democrats requested a GAO review of the hiring surge; DHS OIG opened 8 oversight reviews incl. ICE hiring/training capacity.", source: "https://democrats-homeland.house.gov/download/2025-12-18-t-gao-request-re-review-of-ice-hiring-surge", date: "2025-12-18", firstSeen: "2026-08-31" },
+      { id: "ice-4", summary: "ICE ended the accelerated program; standard ~71-72 day academy course restored effective July 1, 2026.", source: "https://forumtogether.org/article/policy-bulletin-friday-may-8-2026/", date: "2026-05", firstSeen: "2026-08-31" },
+      { id: "ice-5", summary: "Senate reconciliation package (May 5, 2026) provides $30.73B for ICE hiring, training, facilities, and deportation operations through FY2029.", source: "https://rollcall.com/2026/05/05/reconciliation-bill-text-would-fund-ice-cbp-ballroom-security/", date: "2026-05-05", firstSeen: "2026-08-31" }
+    ]},
+    { key: "doe-ctos", name: "DOE - Counterterrorism Operations Support / CRNT", findings: [
+      { id: "ctos-1", summary: "NCTIR (which funds CTOS) sits inside NNSA's subprogram, too granular for named committee treatment.", source: "", date: "", firstSeen: "2026-08-31" },
+      { id: "ctos-2", summary: "NCTIR would rise 29% to $685.6M in the FY2027 request, within DNN's overall $2.39B request.", source: "https://www.congress.gov/crs-product/R48946", date: "2026", firstSeen: "2026-08-31" },
+      { id: "ctos-3", summary: "CTOS (operating since 1998 at NNSS's T-1 Training Area) has trained 280,000+ first responders since 9/11, ~20,000/year.", source: "https://nnss.gov/mission/global-security-programs/counter-terrorism-operations-support-ctoscenter-for-radiological-nuclear-training-at-the-t-1-training-area/", date: "2025-12", firstSeen: "2026-08-31" }
+    ]},
+    { key: "dhs-ss", name: "DHS - U.S. Secret Service", findings: [
+      { id: "usss-1", summary: "FY2027 request: $3.5B net discretionary; Director Curran's Apr 16, 2026 testimony cites $32.2M for operational tempo, $50.8M for 2028 LA Olympics planning, $90.8M for the 2028 campaign cycle.", source: "https://docs.house.gov/meetings/AP/AP15/20260416/119152/HHRG-119-AP15-Wstate-CurranS-20260416.pdf", date: "2026-04-16", firstSeen: "2026-08-31" },
+      { id: "usss-2", summary: "OBBBA Section 100057 appropriated $1.17B directly for additional USSS personnel, training facilities, programming, tech, and retention bonuses.", source: "https://www.congress.gov/crs-product/R48129", date: "2026-04-28", firstSeen: "2026-08-31" },
+      { id: "usss-3", summary: "James J. Rowley Training Center: $12.0M FY26 deferred-maintenance funding, $12.88M FY27 minor construction request.", source: "https://www.ncpc.gov/files/projects/2026/8635_James_J._Rowley_Training_Center_Defense_Training_Facility_Project_Synopsis_May2026.pdf", date: "2026-05", firstSeen: "2026-08-31" },
+      { id: "usss-4", summary: "Hiring surge targets ~4,000 new employees by 2028 (~20% growth); bonuses up to $75,000.", source: "https://www.washingtonpost.com/national-security/2026/01/04/secret-service-expansion-plan-trump/", date: "2026-01-04", firstSeen: "2026-08-31" }
+    ]},
+    { key: "fleta", name: "DHS - Federal Law Enforcement Training Accreditation", findings: [
+      { id: "fleta-1", summary: "FLETA's accreditation office rides inside the FLETC budget; last specific figures found were FY2023 (7 positions, $1.4M).", source: "https://www.fleta.gov/budget-and-performance", date: "2023", firstSeen: "2026-08-31" },
+      { id: "fleta-2", summary: "FLETC's overall FY2027 budget (which hosts FLETA) requests $398.7M–$418M, up 5.0% over the FY26 request.", source: "https://www.dhs.gov/sites/default/files/2026-04/26_0403_ocfo_fy27-budget-fletc.pdf", date: "2026-04-03", firstSeen: "2026-08-31" },
+      { id: "fleta-3", summary: "H.Rept. 119-697 encourages DHS's Office of Health Security, with FLETC, to add workforce-care/resilience content to initial law enforcement training curricula.", source: "https://www.congress.gov/119/crpt/hrpt697/CRPT-119hrpt697.pdf", date: "2026-06-12", firstSeen: "2026-08-31" },
+      { id: "fleta-4", summary: "FLETA Board reaccredited FLETC's Instructor Training and Uniformed Police Training programs and the TSA Federal Air Marshal Service Training Center.", source: "https://www.fleta.gov/press-release/fleta-board-grants-reaccreditation-fletc-leitp-and-uptp", date: "2025-05-15", firstSeen: "2026-08-31" },
+      { id: "fleta-5", summary: "FLETA Board's next meeting scheduled for Nov 3-5, 2026.", source: "https://www.fleta.gov", date: "", firstSeen: "2026-09-01" }
+    ]},
+    { key: "doj-dea", name: "DOJ - DEA - Office of Training", findings: [
+      { id: "dea-1", summary: "FY2026 House CJS bill: +$247M (9.6%) for DEA, $2.814B direct appropriation; with Diversion Control Fund, total ~$3.464B (+10%).", source: "https://www.everycrsreport.com/reports/R48643.html", date: "2025-07-17", firstSeen: "2026-08-31" },
+      { id: "dea-2", summary: "Senate CJS Subcommittee held an FY2027 budget hearing on FBI/DEA/USMS/ATF (May 12, 2026); House approved its FY27 CJS bill 32-28 (Apr 30, 2026).", source: "https://www.appropriations.senate.gov/hearings/a-review-of-the-presidents-fiscal-year-2027-budget-request-for-the-federal-bureau-of-investigation-the-drug-enforcement-administration-the-united-states-marshals-service-and-the-bureau-of-alcohol-tobacco-firearms-and-explosives", date: "2026-05-12", firstSeen: "2026-08-31" },
+      { id: "dea-3", summary: "HIRE DEA Act (H.R. 7413, Feb 2026) would grant DEA temporary direct-hire authority FY27–FY34 to cut 12+ month hiring delays.", source: "https://www.congress.gov/bill/119th-congress/house-bill/7413/text", date: "2026-02", firstSeen: "2026-08-31" }
+    ]},
+    { key: "va-academy", name: "VA - Veterans Affairs - Academy", findings: [
+      { id: "va-1", summary: "No dedicated VA Academy line item in FY26/27 MilCon-VA bill summaries — training funded through broader Departmental Administration accounts.", source: "https://www.congress.gov/crs-product/R48968", date: "2026-06-03", firstSeen: "2026-08-31" },
+      { id: "va-2", summary: "VA Acquisition Academy: GAO has repeatedly flagged training gaps — found leads admitted skipping required training.", source: "https://files.gao.gov/reports/GAO-25-107398/index.html", date: "2025", firstSeen: "2026-08-31" },
+      { id: "va-3", summary: "VA OIG found the former Acquisition Academy Chancellor violated ethics rules — accepted ~$2,700 in impermissible gifts, failed to disclose them.", source: "https://www.vaoig.gov/reports/administrative-investigation/former-acquisition-academy-executive-violated-ethical", date: "2025-08-21", firstSeen: "2026-08-31" },
+      { id: "va-4", summary: "GAO-26-108474 found VA's ongoing acquisition-workforce reorganization (which includes the Acquisition Academy's training pipeline) has not fully incorporated GAO's leading practices.", source: "https://www.gao.gov/products/gao-26-108474", date: "2026-05-06", firstSeen: "2026-09-02", NEW: true }
+    ]},
+    { key: "fams", name: "DHS - TSA - FAMS - Training Centers (3 locations)", findings: [
+      { id: "fams-1", summary: "Three sites confirmed: Artesia NM (basic FAMTP at FLETC), Egg Harbor Township NJ (agency-specific phase), and Glynco GA (FLETC network).", source: "https://www.fletc.gov/federal-air-marshal-training-program/federal-air-marshal-training-program", date: "", firstSeen: "2026-08-31" },
+      { id: "fams-2", summary: "FLETC FY2026 budget: $75.6M for Basic Training (incl. FAMTP); $3.1M for a new armory at Artesia. FY2027 request adds $3.8M for Glynco/Artesia perimeter fencing and $9.9M for dorm renovations.", source: "https://www.dhs.gov/sites/default/files/2026-04/26_0403_ocfo_fy27-budget-fletc.pdf", date: "2026-04-03", firstSeen: "2026-08-31" },
+      { id: "fams-3", summary: "OBBBA-funded FLETC capital surge adds 3 new firing ranges and expanded training/housing capacity at Artesia, Charleston, and Glynco.", source: "https://www.fletc.gov/fletc-surges-law-enforcement-training-capacity-one-big-beautiful-bill-funding", date: "2026-07-04", firstSeen: "2026-08-31" },
+      { id: "fams-4", summary: "House Democrats say the FY27 Homeland Security bill cuts TSA funding by nearly $350M vs. request; GAO-24-107824 (2024) found most FAMS workforce recommendations since 2016 implemented.", source: "https://democrats-appropriations.house.gov/news/press-releases/republican-2027-homeland-security-funding-bill-falls-short-fails-protect-our", date: "2026-06-05", firstSeen: "2026-08-31" }
+    ]},
+    { key: "bia-ipa", name: "DOI - BIA - US Indian Police Academy", findings: [
+      { id: "bia-1", summary: "FY2026 request proposed a 20% ($107M) cut to BIA tribal law enforcement; Sen. Murkowski publicly objected.", source: "https://tribalbusinessnews.com/sections/policy-and-law/15123-trump-budget-proposes-deep-cuts-to-native-american-programs", date: "2025-06-02", firstSeen: "2026-08-31" },
+      { id: "bia-2", summary: "Congress rejected the cut: FY2026 enacted instead delivered $771.84M for Tribal Public Safety and Justice, a 39% increase over FY25.", source: "https://nafoa.org/fy2026-interior-appropriations-advance-tribal-priorities/", date: "2026", firstSeen: "2026-08-31" },
+      { id: "bia-3", summary: "FY2027 House Interior bill (approved 35-27, Jun 3, 2026) proposes a further 36% increase to $774.8M for Tribal Public Safety and Justice, plus $33M for the MMIW Initiative.", source: "https://appropriations.house.gov/news/press-releases/committee-approves-fy27-interior-and-environment-appropriations-act", date: "2026-06-03", firstSeen: "2026-08-31" },
+      { id: "bia-4", summary: "Academy (at FLETC-Artesia since 1993) continues training; Cayuga Nation Officer Jeffrey Davids completed the 597.5-hour Indian Country Police Officer Training Program, Jan 28, 2025.", source: "https://www.bia.gov/bia/ojs/indian-police-academy", date: "2025-01-28", firstSeen: "2026-08-31" }
+    ]},
+    { key: "fps", name: "DHS - Federal Protective Service", findings: [
+      { id: "fps-1", summary: "FY2027 House bill includes $2B+ for FPS, entirely fee-funded (no discretionary increase over FY26).", source: "https://www.congress.gov/119/crpt/hrpt697/CRPT-119hrpt697.pdf", date: "2026-06-09", firstSeen: "2026-08-31" },
+      { id: "fps-2", summary: "GAO-25-108085 (Mar 2025): guards missed prohibited items in ~half of 27 covert tests; ~$1.7B spent on contract guards in FY24.", source: "https://www.gao.gov/products/gao-25-108085", date: "2025-03", firstSeen: "2026-08-31" },
+      { id: "fps-3", summary: "Attempted arson at 26 Federal Plaza, NYC (FPS jurisdiction), Jul 20, 2026 — individual arrived in military-style gear with a weapons cart.", source: "https://www.facilitiesdive.com/news/26-federal-plaza-likely-had-passive-camera-security-specialist-says/825874/", date: "2026-07-20", firstSeen: "2026-08-31" }
+    ]}
   ]
 };
 
 const DELIVERY = {
   asOf: "2026-09-03",
   execSummary: [
-    "Congress passed H.R. 6500 (Continuing Appropriations and Extensions Act, 2027) on September 1, 2026, extending government funding at FY2026 levels through December 11, 2026. This pushes appropriations negotiations past the November midterms while committee markup activity continues on all 12 FY2027 bills.",
-    "Key developments: House Appropriations has completed committee markup on all 12 FY2027 bills; Senate Appropriations awaits topline agreement before proceeding. Defense receives $1.5 trillion (42% increase); non-defense discretionary faces 10% cuts."
+    "Congress averted a government shutdown yesterday: the House passed the Senate's continuing resolution (H.R. 6500, 370-48) and it has been signed into law, funding all 13 tracked customers through FY2026 levels until December 11, 2026. No FY2027 bills have been finalized yet.",
+    "Two items are new today: the enacted CR restores a funding-transfer restriction on CBP's Border Patrol operations (previously dropped in House draft), and a GAO report flagged process gaps in the VA Acquisition Academy's ongoing reorganization. No other changes across the 13 tracked customers or the OPM HRIT modernization watch item."
   ]
 };
 
