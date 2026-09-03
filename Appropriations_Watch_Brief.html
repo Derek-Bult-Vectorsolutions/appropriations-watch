@@ -262,6 +262,8 @@
 </div>
 
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+
 const REPORT = {
   lastUpdated: "2026-09-03",
   deadline: {
@@ -414,4 +416,6 @@ function agencyCardHTML(a){
 document.getElementById("agency-body").innerHTML = visibleAgencies.map(agencyCardHTML).join("");
 document.getElementById("opm-hrit-note").innerHTML = esc(REPORT.opmHrit.note);
 document.getElementById("opm-hrit-body").innerHTML = agencyCardHTML({ name: REPORT.opmHrit.label, findings: visibleHrit });
+
+});
 </script>
