@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Appropriations Watch — Daily Brief</title>
+<title>Appropriations Watch — ELT Daily Brief</title>
 <style>
   :root {
     --paper: #f6f3ec;
@@ -78,7 +78,7 @@
   }
   .wrap { max-width: 860px; margin: 0 auto; padding: 2.75rem 1.5rem 5rem; }
 
-  h1, h2, h3 { font-family: "Source Serif 4", Georgia, serif; text-wrap: balance; margin: 0; font-weight: 600; }
+  h1, h2, h3 { font-family: "Source Serif 4", Georgia, serif; text-wrap: balance; margin: 0; }
 
   .eyebrow {
     font-family: "IBM Plex Mono", ui-monospace, monospace;
@@ -113,7 +113,7 @@
   .exec-summary p:last-child { margin-bottom: 0; }
   .exec-summary .next-date {
     margin-top: 1rem; padding-top: 0.9rem; border-top: 1px solid rgba(255,255,255,0.16);
-    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.78rem; color: var(--brief-soft);
+    font-family: "IBM Plex Mono", monospace; font-size: 0.78rem; color: var(--brief-soft);
   }
   .exec-summary .next-date b { color: var(--brief-accent); }
 
@@ -124,7 +124,7 @@
     padding: 0.9rem 1.1rem; border-radius: 3px; margin-bottom: 1.6rem;
   }
   .deadline-banner .count {
-    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 1.5rem; font-weight: 600;
+    font-family: "IBM Plex Mono", monospace; font-size: 1.5rem; font-weight: 600;
     color: var(--gold); font-variant-numeric: tabular-nums; white-space: nowrap;
   }
   .deadline-banner p { margin: 0; font-size: 0.92rem; color: var(--ink-soft); }
@@ -138,7 +138,7 @@
   }
   .delta-banner.quiet { border-left-color: var(--slate); background: var(--paper-raised); }
   .delta-banner .mark {
-    flex: none; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.68rem;
+    flex: none; font-family: "IBM Plex Mono", monospace; font-size: 0.68rem;
     letter-spacing: 0.05em; text-transform: uppercase; font-weight: 600;
     color: var(--accent); padding-top: 0.15rem;
   }
@@ -154,7 +154,7 @@
   }
   .stat { background: var(--paper-raised); padding: 0.85rem 1rem; }
   .stat .n {
-    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 1.4rem; font-weight: 600;
+    font-family: "IBM Plex Mono", monospace; font-size: 1.4rem; font-weight: 600;
     font-variant-numeric: tabular-nums;
   }
   .stat .n.accent { color: var(--accent); }
@@ -165,7 +165,7 @@
   .committee-table { width: 100%; overflow-x: auto; }
   table.committees { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
   table.committees th {
-    text-align: left; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.7rem;
+    text-align: left; font-family: "IBM Plex Mono", monospace; font-size: 0.7rem;
     letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate);
     border-bottom: 1px solid var(--line); padding: 0.45rem 0.7rem 0.5rem 0;
   }
@@ -173,7 +173,13 @@
   table.committees tr:last-child td { border-bottom: none; }
   .cov { color: var(--slate); font-size: 0.82rem; }
 
-  section.agency-list h2.section-title { font-size: 1.3rem; margin-bottom: 1.1rem; padding-bottom: 0.5rem; border-bottom: 3px double var(--line); }
+  section.agency-list h2.section-title,
+  section.opm-hrit h2.section-title {
+    font-size: 1.3rem; margin-bottom: 1.1rem;
+    padding-bottom: 0.5rem; border-bottom: 3px double var(--line);
+    display: flex; align-items: baseline; gap: 0.65rem; flex-wrap: wrap;
+  }
+  section.opm-hrit { margin-bottom: 2.6rem; }
   .section-note { font-size: 0.85rem; color: var(--ink-soft); margin: 0 0 1rem; }
 
   .agency {
@@ -194,7 +200,7 @@
   }
   ul.findings li:first-child { border-top: none; }
   .badge-new {
-    flex: none; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.62rem;
+    flex: none; font-family: "IBM Plex Mono", monospace; font-size: 0.62rem;
     letter-spacing: 0.05em; background: var(--accent-soft); color: var(--accent);
     border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
     padding: 0.12rem 0.4rem; border-radius: 3px; margin-top: 0.15rem;
@@ -204,6 +210,7 @@
   .finding-meta a { color: var(--focus); text-decoration: none; }
   .finding-meta a:hover { text-decoration: underline; }
   .finding-meta .dot { margin: 0 0.35rem; }
+  .aged-out-note { font-size: 0.85rem; color: var(--slate); font-style: italic; padding: 0.3rem 0; }
 
   footer.notes {
     margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px solid var(--line);
@@ -220,211 +227,199 @@
 <body>
 <div class="wrap">
   <header class="masthead">
-    <div class="eyebrow">Federal Appropriations Tracking</div>
+    <div class="eyebrow">Vector Solutions · Daily Brief for ELT</div>
     <h1>Appropriations Watch</h1>
-    <div class="masthead-meta">
-      <div><strong>September 3, 2026</strong> · Latest developments</div>
-      <div><strong>99 days</strong> to CR expiration</div>
-    </div>
+    <div class="masthead-meta" id="masthead-meta"></div>
   </header>
 
-  <div class="exec-summary">
-    <div class="eyebrow">Executive Summary</div>
-    <h2>FY2027 Continuing Resolution Active</h2>
-    <p>Congress passed H.R. 6500 (Continuing Appropriations and Extensions Act, 2027) on September 1, 2026, extending government funding at FY2026 levels through December 11, 2026. This pushes appropriations negotiations past the November midterms while committee markup activity continues on all 12 FY2027 bills.</p>
-    <p>Key developments: House Appropriations has completed committee markup on all 12 FY2027 bills; Senate Appropriations awaits topline agreement before proceeding. Defense receives $1.5 trillion (42% increase); non-defense discretionary faces 10% cuts.</p>
-    <div class="next-date"><b>Next Deadline:</b> December 11, 2026 (CR Expiration)</div>
-  </div>
+  <div class="exec-summary" id="exec-summary"></div>
 
-  <div class="deadline-banner">
-    <div class="count">99</div>
-    <p>Days until <b>Continuing Resolution expiration</b> — Congress must pass FY2027 appropriations bills or enact another CR by December 11, 2026.</p>
-  </div>
+  <div class="deadline-banner" id="deadline-banner"></div>
 
-  <div class="stat-row">
-    <div class="stat">
-      <div class="n">12</div>
-      <div class="label">Bills tracked</div>
-    </div>
-    <div class="stat">
-      <div class="n">6</div>
-      <div class="label">Committees active</div>
-    </div>
-    <div class="stat">
-      <div class="n">3</div>
-      <div class="label">New findings this week</div>
-    </div>
-    <div class="stat">
-      <div class="n accent">42%</div>
-      <div class="label">Defense increase</div>
-    </div>
-  </div>
+  <div id="delta-banner"></div>
+
+  <div class="stat-row" id="stat-row"></div>
 
   <section class="committees">
     <h2>Next Scheduled Committee Action</h2>
     <div class="committee-table">
       <table class="committees">
-        <thead><tr><th>Subcommittee</th><th>Covers</th><th>Next Action</th></tr></thead>
-        <tbody>
-          <tr>
-            <td><b>Defense, Military Construction & VA</b></td>
-            <td class="cov">DOD, VA, military construction</td>
-            <td>House: H.R. 8469 (MilCon-VA) passed procedural vote 214–208 (May 2026). Hearing: Industrial Base & Workforce (Sept 4, 2026). Senate: awaits topline.</td>
-          </tr>
-          <tr>
-            <td><b>Interior & Environment</b></td>
-            <td class="cov">EPA, Interior, USGS, parks</td>
-            <td>House: H.R. 9171 reported ($42.67B, Jun 5, 2026). Senate: pending topline agreement.</td>
-          </tr>
-          <tr>
-            <td><b>Commerce, Justice & Science</b></td>
-            <td class="cov">DOJ, NSF, NOAA, Census Bureau</td>
-            <td>House: FY27 bill approved 32–28 (Apr 30, 2026). Senate: budget hearing held (May 12); markup pending.</td>
-          </tr>
-          <tr>
-            <td><b>Labor, Health & Human Services, Education</b></td>
-            <td class="cov">HHS, Education, Labor</td>
-            <td>House: FY27 bill released (Jun 4, 2026), focus on education & workforce. Senate: pending topline.</td>
-          </tr>
-          <tr>
-            <td><b>National Security, State & Related</b></td>
-            <td class="cov">State Dept, foreign aid, diplomacy</td>
-            <td>House: H.R. 8595 passed (Jul 15, 2026). Senate: consideration and conference pending.</td>
-          </tr>
-          <tr>
-            <td><b>Financial Services & General Government (FSGG)</b></td>
-            <td class="cov">OPM – Federal HR 2.0 / Core HCM</td>
-            <td>House: FY27 committee report/print exists. Senate: FY27 markup pending. OPM under CR through Dec 11.</td>
-          </tr>
-        </tbody>
+        <thead><tr><th>Subcommittee</th><th>Covers</th><th>Next action</th></tr></thead>
+        <tbody id="committee-body"></tbody>
       </table>
     </div>
   </section>
 
+  <section class="opm-hrit">
+    <h2 class="section-title">OPM HRIT Watch</h2>
+    <p class="section-note" id="opm-hrit-note"></p>
+    <div id="opm-hrit-body"></div>
+  </section>
+
   <section class="agency-list">
-    <h2 class="section-title">Key Agencies & Tracking</h2>
-
-    <div class="agency">
-      <div class="agency-head">
-        <h3>Department of Defense</h3>
-        <span class="agency-count">FY27 Request: $1.5T</span>
-      </div>
-      <ul class="findings">
-        <li>
-          <span class="badge-new">NEW</span>
-          <div class="finding-body">
-            <p><b>Defense Industrial Base Hearing:</b> House Appropriations Subcommittee on Defense holds hearing on "Industrial Base and Workforce Development for Skilled Trades" at College of the Canyons, Santa Clarita, CA, 1:00 PM on September 4, 2026.</p>
-            <div class="finding-meta">Sept 4, 2026 · House Appropriations</div>
-          </div>
-        </li>
-        <li>
-          <span class="badge-new">NEW</span>
-          <div class="finding-body">
-            <p><b>Space Modernization Request:</b> FY2027 budget request includes $45 billion for space modernization with focus on rapid deployment capabilities.</p>
-            <div class="finding-meta">Apr 2026 · Trump Administration budget request</div>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <div class="agency">
-      <div class="agency-head">
-        <h3>Environmental Protection Agency (EPA)</h3>
-        <span class="agency-count">Interior bill tracking</span>
-      </div>
-      <ul class="findings">
-        <li>
-          <span class="badge-new">NEW</span>
-          <div class="finding-body">
-            <p><b>Clean Water Funding Restored:</b> Clean Water Act funding restored to $2.8 billion in latest committee draft, reversing previous cut proposal.</p>
-            <div class="finding-meta">Sept 3, 2026 · House Appropriations Committee draft</div>
-          </div>
-        </li>
-        <li>
-          <div class="finding-body">
-            <p><b>Air Quality Network Expansion:</b> Air quality monitoring network expansion approved for 12 additional states under Interior bill.</p>
-            <div class="finding-meta">Aug 28, 2026 · Committee markup</div>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <div class="agency">
-      <div class="agency-head">
-        <h3>National Science Foundation (NSF)</h3>
-        <span class="agency-count">CJS Subcommittee</span>
-      </div>
-      <ul class="findings">
-        <li>
-          <span class="badge-new">NEW</span>
-          <div class="finding-body">
-            <p><b>AI Research Initiative Boost:</b> NSF AI research initiative receives $1.2 billion allocation, up from $800 million initially proposed in FY2027 request.</p>
-            <div class="finding-meta">Sept 3, 2026 · Committee draft</div>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <div class="agency">
-      <div class="agency-head">
-        <h3>Department of State</h3>
-        <span class="agency-count">National Security bill</span>
-      </div>
-      <ul class="findings">
-        <li>
-          <div class="finding-body">
-            <p><b>House Passage:</b> H.R. 8595 (FY2027 National Security, State and Related Programs) passed House on July 15, 2026. Senate consideration and conference negotiations underway.</p>
-            <div class="finding-meta">Jul 15, 2026 · House floor vote</div>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <div class="agency">
-      <div class="agency-head">
-        <h3>Department of Labor & HHS</h3>
-        <span class="agency-count">Labor/HHS/Education bill</span>
-      </div>
-      <ul class="findings">
-        <li>
-          <div class="finding-body">
-            <p><b>FY2027 Bill Released:</b> House Appropriations Committee released FY2027 Labor, Health and Human Services, Education, and Related Agencies bill on June 4, 2026, with significant focus on education funding and workforce development.</p>
-            <div class="finding-meta">Jun 4, 2026 · House Committee markup</div>
-          </div>
-        </li>
-      </ul>
-    </div>
-
+    <h2 class="section-title">By Program</h2>
+    <div id="agency-body"></div>
   </section>
 
   <footer class="notes">
-    <p><b>How to read this:</b> The brief tracks 12 FY2027 appropriations bills across 6 House subcommittees. Items marked "NEW" were flagged in the last 3 days. All data sourced from Congress.gov, House/Senate Appropriations Committees, and official budget justifications.</p>
-    <p>Next deadline: December 11, 2026 (CR Expiration). Compiled from congress.gov, House/Senate Appropriations Committee official sites, budget justifications, and current legislative activity.</p>
+    <p><b>How to read this:</b> items are kept on this brief for 30 days after they were first flagged, then age off automatically to keep the daily read short — the full un-pruned history lives in the master tracker. "NEW" marks anything first flagged today.</p>
+    <p>Compiled from congress.gov, House/Senate Appropriations Committee sites, agency budget justifications, GAO/OIG reports, Federal Register, and news coverage.</p>
   </footer>
 </div>
 
 <script>
-  // Calculate and update deadline counter
-  function updateDeadlineCounter() {
-    const today = new Date('2026-09-03');
-    const deadline = new Date('2026-12-11');
-    const diffTime = Math.abs(deadline - today);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+const REPORT = {
+  lastUpdated: "2026-09-03",
+  deadline: {
+    label: "Next funding deadline — CR expires",
+    date: "2026-12-11",
+    note: "Shutdown averted: the House passed the Senate's CR (H.R. 6500, Continuing Appropriations and Extensions Act, 2027) 370–48 on Sept 1, 2026 under suspension of the rules, and it has been signed into law — funding the government at FY26 levels through Dec 11, 2026, pushing the fight past the November midterms. Senate Appropriations still has not agreed on FY2027 topline numbers, so no Senate committee markups have occurred on any of the 12 bills; House Appropriations has passed all 12 bills out of committee, and MilCon-VA (H.R. 8469) additionally cleared a House floor procedural vote 214-208 (May 13, 2026). Next deadline is Dec 11 — either a full-year FY27 deal or another CR."
+  },
+  committees: [
+    { name: "House/Senate Defense, Military Construction & VA Subcommittees", covers: "DOD, VA, military construction", next: "House: H.R. 8469 (MilCon-VA) passed procedural vote 214–208 (May 2026). Hearing: Industrial Base & Workforce (Sept 4, 2026). Senate: awaits topline." },
+    { name: "House/Senate Interior & Environment Subcommittees", covers: "EPA, Interior, USGS, parks", next: "House: H.R. 9171 reported ($42.67B, Jun 5, 2026). Senate: pending topline agreement." },
+    { name: "House/Senate Commerce-Justice-Science Subcommittees", covers: "DOJ, NSF, NOAA, Census Bureau", next: "House: FY27 bill approved 32–28 (Apr 30, 2026). Senate: budget hearing held (May 12); markup pending." },
+    { name: "House/Senate Labor, Health & Human Services, Education Subcommittees", covers: "HHS, Education, Labor", next: "House: FY27 bill released (Jun 4, 2026), focus on education & workforce. Senate: pending topline." },
+    { name: "House/Senate National Security, State & Related Subcommittees", covers: "State Dept, foreign aid, diplomacy", next: "House: H.R. 8595 passed (Jul 15, 2026). Senate: consideration and conference pending." },
+    { name: "House/Senate Financial Services & General Government Subcommittees", covers: "OPM – Federal HR 2.0 / Core HCM", next: "House: FY27 committee report/print exists. Senate: FY27 markup pending. OPM under CR through Dec 11." }
+  ],
+  opmHrit: {
+    label: "OPM – Federal HR 2.0 ("HRIT") Modernization",
+    note: "Watch item added 2026-09-01. "OPM HRIT" is OPM's own shorthand for the Federal HR 2.0 / Core HCM consolidation program — not a single appropriations line item. Tracked via the FSGG row above.",
+    findings: [
+      { id: "hrit-1", summary: "OMB and OPM jointly launched "Federal HR 2.0," directing CFO Act agencies to begin consolidating 100+ disparate HR IT systems onto a single governmentwide cloud Core HCM platform, targeting full transition by FY2028.", source: "https://www.opm.gov/news/news-releases/one-hr-system-for-the-entire-federal-government-opm-and-omb-announce-major-reform/", date: "2025-12-10", firstSeen: "2026-09-01" },
+      { id: "hrit-2", summary: "OPM awarded Oracle a $395.8M, 10-year contract (Oracle Fusion Cloud HCM) to build the Core HCM platform for ~2M federal civilian employees, replacing 100+ legacy systems.", source: "https://www.govexec.com/technology/2026/06/opm-hr-overhaul-396m-award/414101/", date: "2026-06-11", firstSeen: "2026-09-01" }
+    ]
+  },
+  agencies: [
+    { key: "dod", name: "Department of Defense", findings: [
+      { id: "dod-1", summary: "FY2027 budget request includes $45 billion for space modernization with focus on rapid deployment capabilities.", source: "", date: "2026-04", firstSeen: "2026-09-03" },
+      { id: "dod-2", summary: "Defense Industrial Base Hearing: House Appropriations Subcommittee on Defense holds hearing on "Industrial Base and Workforce Development for Skilled Trades" at College of the Canyons, Santa Clarita, CA, 1:00 PM on September 4, 2026.", source: "", date: "2026-09-04", firstSeen: "2026-09-03" }
+    ]},
+    { key: "epa", name: "Environmental Protection Agency (EPA)", findings: [
+      { id: "epa-1", summary: "Clean Water Act funding restored to $2.8 billion in latest committee draft, reversing previous cut proposal.", source: "", date: "2026-09-03", firstSeen: "2026-09-03" },
+      { id: "epa-2", summary: "Air quality monitoring network expansion approved for 12 additional states under Interior bill.", source: "", date: "2026-08-28", firstSeen: "2026-08-28" }
+    ]},
+    { key: "nsf", name: "National Science Foundation (NSF)", findings: [
+      { id: "nsf-1", summary: "AI research initiative receives $1.2 billion allocation, up from $800 million initially proposed in FY2027 request.", source: "", date: "2026-09-03", firstSeen: "2026-09-03" }
+    ]},
+    { key: "state", name: "Department of State", findings: [
+      { id: "state-1", summary: "H.R. 8595 (FY2027 National Security, State and Related Programs) passed House on July 15, 2026. Senate consideration and conference negotiations underway.", source: "", date: "2026-07-15", firstSeen: "2026-07-15" }
+    ]},
+    { key: "labor-hhs", name: "Department of Labor & HHS", findings: [
+      { id: "labor-1", summary: "House Appropriations Committee released FY2027 Labor, Health and Human Services, Education, and Related Agencies bill on June 4, 2026, with significant focus on education funding and workforce development.", source: "", date: "2026-06-04", firstSeen: "2026-06-04" }
+    ]}
+  ]
+};
 
-    // Update all instances of the counter
-    const counters = document.querySelectorAll('[data-deadline-counter]');
-    counters.forEach(el => {
-      el.textContent = diffDays;
-    });
+const DELIVERY = {
+  asOf: "2026-09-03",
+  execSummary: [
+    "Congress passed H.R. 6500 (Continuing Appropriations and Extensions Act, 2027) on September 1, 2026, extending government funding at FY2026 levels through December 11, 2026. This pushes appropriations negotiations past the November midterms while committee markup activity continues on all 12 FY2027 bills.",
+    "Key developments: House Appropriations has completed committee markup on all 12 FY2027 bills; Senate Appropriations awaits topline agreement before proceeding. Defense receives $1.5 trillion (42% increase); non-defense discretionary faces 10% cuts."
+  ]
+};
 
-    // Also update the banner count
-    const bannerCount = document.querySelector('.deadline-banner .count');
-    if (bannerCount) {
-      bannerCount.textContent = diffDays;
-    }
-  }
+const AGE_WINDOW_DAYS = 30;
 
-  document.addEventListener('DOMContentLoaded', updateDeadlineCounter);
+function esc(s){ return (s||"").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function fmtDate(iso){
+  if(!iso) return "undated";
+  const parts = iso.split("-");
+  const d = new Date(Date.UTC(+parts[0], (+parts[1]||1)-1, +parts[2]||1));
+  const opts = parts.length === 1 ? {year:"numeric", timeZone:"UTC"} : parts.length === 2 ? {year:"numeric", month:"short", timeZone:"UTC"} : {year:"numeric", month:"short", day:"numeric", timeZone:"UTC"};
+  return d.toLocaleDateString("en-US", opts);
+}
+
+const asOfDate = new Date(DELIVERY.asOf + "T00:00:00Z");
+function ageDays(iso){ return Math.round((asOfDate - new Date(iso + "T00:00:00Z")) / 86400000); }
+function inWindow(f){ return ageDays(f.firstSeen) <= AGE_WINDOW_DAYS; }
+function isNewToday(f){ return f.firstSeen === DELIVERY.asOf; }
+
+const visibleAgencies = REPORT.agencies.map(a => ({ ...a, findings: a.findings.filter(inWindow) }));
+const visibleHrit = REPORT.opmHrit.findings.filter(inWindow);
+const allVisibleFindings = visibleAgencies.flatMap(a => a.findings).concat(visibleHrit);
+const newToday = allVisibleFindings.filter(isNewToday);
+const daysToDeadline = Math.round((new Date(REPORT.deadline.date) - asOfDate) / 86400000);
+
+document.getElementById("masthead-meta").innerHTML =
+  `<span>As of <strong>${fmtDate(DELIVERY.asOf)}</strong></span>` +
+  `<span>6 programs tracked</span>` +
+  `<span>${allVisibleFindings.length} items on file (last ${AGE_WINDOW_DAYS} days)</span>`;
+
+document.getElementById("exec-summary").innerHTML =
+  `<div class="eyebrow">Executive Summary</div>` +
+  `<h2>What ELT needs to know today</h2>` +
+  DELIVERY.execSummary.map(p => `<p>${esc(p)}</p>`).join("") +
+  `<div class="next-date">Next key date — <b>${fmtDate(REPORT.deadline.date)}</b> (${esc(REPORT.deadline.label)})</div>`;
+
+document.getElementById("deadline-banner").innerHTML =
+  `<span class="count">${daysToDeadline}d</span>` +
+  `<p><b>${esc(REPORT.deadline.label)}</b> — ${esc(REPORT.deadline.date)}. ${esc(REPORT.deadline.note)}</p>`;
+
+const deltaEl = document.getElementById("delta-banner");
+if (newToday.length === 0) {
+  deltaEl.innerHTML = `
+    <div class="delta-banner quiet">
+      <span class="mark">No change</span>
+      <p>No new appropriations activity since the last update. Everything below is unchanged from yesterday's brief.</p>
+    </div>`;
+} else {
+  deltaEl.innerHTML = `
+    <div class="delta-banner">
+      <span class="mark">${newToday.length} new</span>
+      <div>
+        <p>New since the last update:</p>
+        <ul>${newToday.map(f => `<li>${esc(f.summary)}</li>`).join("")}</ul>
+      </div>
+    </div>`;
+}
+
+document.getElementById("stat-row").innerHTML = `
+  <div class="stat"><div class="n">6</div><div class="label">Programs tracked</div></div>
+  <div class="stat"><div class="n">${allVisibleFindings.length}</div><div class="label">Items on file (30d)</div></div>
+  <div class="stat"><div class="n accent">${newToday.length}</div><div class="label">New today</div></div>
+  <div class="stat"><div class="n">${REPORT.committees.length}</div><div class="label">Subcommittees in play</div></div>
+`;
+
+document.getElementById("committee-body").innerHTML = REPORT.committees.map(c => `
+  <tr>
+    <td><b>${esc(c.name)}</b></td>
+    <td class="cov">${esc(c.covers)}</td>
+    <td>${esc(c.next)}</td>
+  </tr>
+`).join("");
+
+function agencyCardHTML(a){
+  return `
+  <div class="agency">
+    <div class="agency-head">
+      <h3>${esc(a.name)}</h3>
+      <span class="agency-count">${a.findings.length} item${a.findings.length===1?'':'s'} on file</span>
+    </div>
+    ${a.findings.length === 0 ? '<div class="aged-out-note">No items in the last ' + AGE_WINDOW_DAYS + ' days.</div>' : `
+    <ul class="findings">
+      ${a.findings.map(f => `
+        <li>
+          ${isNewToday(f) ? '<span class="badge-new">NEW</span>' : ''}
+          <div class="finding-body">
+            <p>${esc(f.summary)}</p>
+            <div class="finding-meta">
+              ${f.source ? `<a href="${esc(f.source)}" target="_blank" rel="noopener">source</a><span class="dot">&middot;</span>` : ''}
+              ${fmtDate(f.date)}
+              <span class="dot">&middot;</span>
+              first seen ${fmtDate(f.firstSeen)} (${ageDays(f.firstSeen)}d ago)
+            </div>
+          </div>
+        </li>
+      `).join("")}
+    </ul>`}
+  </div>`;
+}
+
+document.getElementById("agency-body").innerHTML = visibleAgencies.map(agencyCardHTML).join("");
+document.getElementById("opm-hrit-note").innerHTML = esc(REPORT.opmHrit.note);
+document.getElementById("opm-hrit-body").innerHTML = agencyCardHTML({ name: REPORT.opmHrit.label, findings: visibleHrit });
 </script>
 </body>
 </html>
