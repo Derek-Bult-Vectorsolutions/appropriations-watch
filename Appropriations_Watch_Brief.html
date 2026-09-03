@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Appropriations Watch — Daily Brief</title>
+<style>
+  :root {
+    --paper: #f6f3ec;
+    --paper-raised: #fffdf8;
+    --ink: #1c2128;
+    --ink-soft: #454d59;
+    --slate: #6b7280;
+    --line: #ddd6c7;
+    --accent: #8a2131;
+    --accent-soft: #f4e2e2;
+    --gold: #96702a;
+    --gold-soft: #f1e6d0;
+    --good: #2f6b4f;
+    --good-soft: #e3ede7;
+    --mono-bg: #efe9db;
+    --focus: #2559a8;
+    --brief-bg: #23262b;
+    --brief-text: #f3f1ea;
+    --brief-soft: #b9bcc2;
+    --brief-accent: #d9b871;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #14171c;
+      --paper-raised: #1b1f26;
+      --ink: #ece8dd;
+      --ink-soft: #b7bec9;
+      --slate: #8b93a0;
+      --line: #333a44;
+      --accent: #e37e8b;
+      --accent-soft: #3a2226;
+      --gold: #d9b871;
+      --gold-soft: #33291a;
+      --good: #7fc7a4;
+      --good-soft: #1f2e27;
+      --mono-bg: #1e242c;
+      --focus: #6ea2ea;
+      --brief-bg: #23262b;
+      --brief-text: #f3f1ea;
+      --brief-soft: #b9bcc2;
+      --brief-accent: #d9b871;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #14171c;
+    --paper-raised: #1b1f26;
+    --ink: #ece8dd;
+    --ink-soft: #b7bec9;
+    --slate: #8b93a0;
+    --line: #333a44;
+    --accent: #e37e8b;
+    --accent-soft: #3a2226;
+    --gold: #d9b871;
+    --gold-soft: #33291a;
+    --good: #7fc7a4;
+    --good-soft: #1f2e27;
+    --mono-bg: #1e242c;
+    --focus: #6ea2ea;
+    --brief-bg: #23262b;
+    --brief-text: #f3f1ea;
+    --brief-soft: #b9bcc2;
+    --brief-accent: #d9b871;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { background: var(--paper); }
+  body {
+    color: var(--ink);
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 2.75rem 1.5rem 5rem; }
+
+  h1, h2, h3 { text-wrap: balance; margin: 0; }
+
+  .eyebrow {
+    font-family: ui-monospace, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+
+  header.masthead {
+    border-bottom: 3px double var(--line);
+    padding-bottom: 1.4rem;
+    margin-bottom: 1.6rem;
+  }
+  header.masthead h1 { font-size: 2rem; font-weight: 600; margin-top: 0.35rem; }
+  .masthead-meta {
+    display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem;
+    margin-top: 0.9rem; font-size: 0.85rem; color: var(--ink-soft);
+  }
+  .masthead-meta strong { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+  .exec-summary {
+    background: var(--brief-bg); color: var(--brief-text);
+    border-radius: 6px; padding: 1.5rem 1.7rem 1.6rem; margin-bottom: 2rem;
+  }
+  .exec-summary .eyebrow { color: var(--brief-accent); }
+  .exec-summary h2 {
+    font-size: 1.3rem; font-weight: 600; color: var(--brief-text);
+    margin-top: 0.4rem; margin-bottom: 0.8rem;
+  }
+  .exec-summary p { margin: 0 0 0.7rem; font-size: 0.98rem; color: var(--brief-text); max-width: 62ch; }
+  .exec-summary p:last-child { margin-bottom: 0; }
+  .exec-summary .next-date {
+    margin-top: 1rem; padding-top: 0.9rem; border-top: 1px solid rgba(255,255,255,0.16);
+    font-family: ui-monospace, monospace; font-size: 0.78rem; color: var(--brief-soft);
+  }
+  .exec-summary .next-date b { color: var(--brief-accent); }
+
+  .deadline-banner {
+    display: flex; gap: 1rem; align-items: baseline; flex-wrap: wrap;
+    background: var(--gold-soft); border: 1px solid var(--line);
+    border-left: 4px solid var(--gold);
+    padding: 0.9rem 1.1rem; border-radius: 3px; margin-bottom: 1.6rem;
+  }
+  .deadline-banner .count {
+    font-family: ui-monospace, monospace; font-size: 1.5rem; font-weight: 600;
+    color: var(--gold); font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .deadline-banner p { margin: 0; font-size: 0.92rem; color: var(--ink-soft); }
+  .deadline-banner p b { color: var(--ink); }
+
+  .delta-banner {
+    display: flex; gap: 0.8rem; align-items: flex-start;
+    border: 1px solid var(--line); border-left: 4px solid var(--accent);
+    background: var(--accent-soft); border-radius: 3px;
+    padding: 0.9rem 1.1rem; margin-bottom: 2.2rem;
+  }
+  .delta-banner.quiet { border-left-color: var(--slate); background: var(--paper-raised); }
+  .delta-banner .mark {
+    flex: none; font-family: ui-monospace, monospace; font-size: 0.68rem;
+    letter-spacing: 0.05em; text-transform: uppercase; font-weight: 600;
+    color: var(--accent); padding-top: 0.15rem;
+  }
+  .delta-banner.quiet .mark { color: var(--slate); }
+  .delta-banner ul { margin: 0.3rem 0 0; padding-left: 1.1rem; }
+  .delta-banner li { margin: 0.3rem 0; font-size: 0.92rem; }
+  .delta-banner p { margin: 0; font-size: 0.92rem; color: var(--ink-soft); }
+
+  .stat-row {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1px; background: var(--line); border: 1px solid var(--line);
+    margin-bottom: 2.2rem; border-radius: 3px; overflow: hidden;
+  }
+  .stat { background: var(--paper-raised); padding: 0.85rem 1rem; }
+  .stat .n {
+    font-family: ui-monospace, monospace; font-size: 1.4rem; font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat .n.accent { color: var(--accent); }
+  .stat .label { font-size: 0.72rem; color: var(--slate); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.15rem; }
+
+  section.committees { margin-bottom: 2.6rem; }
+  section.committees h2 { font-size: 1.15rem; margin-bottom: 0.9rem; }
+  .committee-table { width: 100%; overflow-x: auto; }
+  table.committees { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  table.committees th {
+    text-align: left; font-family: ui-monospace, monospace; font-size: 0.7rem;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate);
+    border-bottom: 1px solid var(--line); padding: 0.45rem 0.7rem 0.5rem 0;
+  }
+  table.committees td { padding: 0.65rem 0.7rem 0.65rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.committees tr:last-child td { border-bottom: none; }
+  .cov { color: var(--slate); font-size: 0.82rem; }
+
+  section.agency-list h2.section-title { font-size: 1.3rem; margin-bottom: 1.1rem; padding-bottom: 0.5rem; border-bottom: 3px double var(--line); }
+  .section-note { font-size: 0.85rem; color: var(--ink-soft); margin: 0 0 1rem; }
+
+  .agency {
+    background: var(--paper-raised); border: 1px solid var(--line);
+    border-radius: 4px; padding: 1.1rem 1.3rem 1.2rem; margin-bottom: 1rem;
+  }
+  .agency-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 1rem; flex-wrap: wrap; margin-bottom: 0.7rem;
+  }
+  .agency-head h3 { font-size: 1.05rem; font-weight: 600; }
+  .agency-count { font-size: 0.78rem; color: var(--slate); white-space: nowrap; }
+
+  ul.findings { list-style: none; margin: 0; padding: 0; }
+  ul.findings li {
+    padding: 0.6rem 0; border-top: 1px solid var(--line);
+    display: flex; gap: 0.6rem; align-items: flex-start;
+  }
+  ul.findings li:first-child { border-top: none; }
+  .badge-new {
+    flex: none; font-family: ui-monospace, monospace; font-size: 0.62rem;
+    letter-spacing: 0.05em; background: var(--accent-soft); color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    padding: 0.12rem 0.4rem; border-radius: 3px; margin-top: 0.15rem;
+  }
+  .finding-body p { margin: 0 0 0.3rem; font-size: 0.92rem; }
+  .finding-meta { font-size: 0.78rem; color: var(--slate); }
+  .finding-meta a { color: var(--focus); text-decoration: none; }
+  .finding-meta a:hover { text-decoration: underline; }
+  .finding-meta .dot { margin: 0 0.35rem; }
+
+  footer.notes {
+    margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px solid var(--line);
+    font-size: 0.8rem; color: var(--slate);
+  }
+  footer.notes p { margin: 0 0 0.5rem; }
+
+  a { color: var(--focus); }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="eyebrow">Federal Appropriations Tracking</div>
+    <h1>Appropriations Watch</h1>
+    <div class="masthead-meta">
+      <div><strong>September 3, 2026</strong> · Latest developments</div>
+      <div><strong>99 days</strong> to CR expiration</div>
+    </div>
+  </header>
+
+  <div class="exec-summary">
+    <div class="eyebrow">Executive Summary</div>
+    <h2>FY2027 Continuing Resolution Active</h2>
+    <p>Congress passed H.R. 6500 (Continuing Appropriations and Extensions Act, 2027) on September 1, 2026, extending government funding at FY2026 levels through December 11, 2026. This pushes appropriations negotiations past the November midterms while committee markup activity continues on all 12 FY2027 bills.</p>
+    <p>Key developments: House Appropriations has completed committee markup on all 12 FY2027 bills; Senate Appropriations awaits topline agreement before proceeding. Defense receives $1.5 trillion (42% increase); non-defense discretionary faces 10% cuts.</p>
+    <div class="next-date"><b>Next Deadline:</b> December 11, 2026 (CR Expiration)</div>
+  </div>
+
+  <div class="deadline-banner">
+    <div class="count">99</div>
+    <p>Days until <b>Continuing Resolution expiration</b> — Congress must pass FY2027 appropriations bills or enact another CR by December 11, 2026.</p>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat">
+      <div class="n">12</div>
+      <div class="label">Bills tracked</div>
+    </div>
+    <div class="stat">
+      <div class="n">6</div>
+      <div class="label">Committees active</div>
+    </div>
+    <div class="stat">
+      <div class="n">3</div>
+      <div class="label">New findings this week</div>
+    </div>
+    <div class="stat">
+      <div class="n accent">42%</div>
+      <div class="label">Defense increase</div>
+    </div>
+  </div>
+
+  <section class="committees">
+    <h2>Next Scheduled Committee Action</h2>
+    <div class="committee-table">
+      <table class="committees">
+        <thead><tr><th>Subcommittee</th><th>Covers</th><th>Next Action</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>Defense, Military Construction & VA</b></td>
+            <td class="cov">DOD, VA, military construction</td>
+            <td>House: H.R. 8469 (MilCon-VA) passed procedural vote 214–208 (May 2026). Hearing: Industrial Base & Workforce (Sept 4, 2026). Senate: awaits topline.</td>
+          </tr>
+          <tr>
+            <td><b>Interior & Environment</b></td>
+            <td class="cov">EPA, Interior, USGS, parks</td>
+            <td>House: H.R. 9171 reported ($42.67B, Jun 5, 2026). Senate: pending topline agreement.</td>
+          </tr>
+          <tr>
+            <td><b>Commerce, Justice & Science</b></td>
+            <td class="cov">DOJ, NSF, NOAA, Census Bureau</td>
+            <td>House: FY27 bill approved 32–28 (Apr 30, 2026). Senate: budget hearing held (May 12); markup pending.</td>
+          </tr>
+          <tr>
+            <td><b>Labor, Health & Human Services, Education</b></td>
+            <td class="cov">HHS, Education, Labor</td>
+            <td>House: FY27 bill released (Jun 4, 2026), focus on education & workforce. Senate: pending topline.</td>
+          </tr>
+          <tr>
+            <td><b>National Security, State & Related</b></td>
+            <td class="cov">State Dept, foreign aid, diplomacy</td>
+            <td>House: H.R. 8595 passed (Jul 15, 2026). Senate: consideration and conference pending.</td>
+          </tr>
+          <tr>
+            <td><b>Financial Services & General Government (FSGG)</b></td>
+            <td class="cov">OPM – Federal HR 2.0 / Core HCM</td>
+            <td>House: FY27 committee report/print exists. Senate: FY27 markup pending. OPM under CR through Dec 11.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="agency-list">
+    <h2 class="section-title">Key Agencies & Tracking</h2>
+
+    <div class="agency">
+      <div class="agency-head">
+        <h3>Department of Defense</h3>
+        <span class="agency-count">FY27 Request: $1.5T</span>
+      </div>
+      <ul class="findings">
+        <li>
+          <span class="badge-new">NEW</span>
+          <div class="finding-body">
+            <p><b>Defense Industrial Base Hearing:</b> House Appropriations Subcommittee on Defense holds hearing on "Industrial Base and Workforce Development for Skilled Trades" at College of the Canyons, Santa Clarita, CA, 1:00 PM on September 4, 2026.</p>
+            <div class="finding-meta">Sept 4, 2026 · House Appropriations</div>
+          </div>
+        </li>
+        <li>
+          <span class="badge-new">NEW</span>
+          <div class="finding-body">
+            <p><b>Space Modernization Request:</b> FY2027 budget request includes $45 billion for space modernization with focus on rapid deployment capabilities.</p>
+            <div class="finding-meta">Apr 2026 · Trump Administration budget request</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="agency">
+      <div class="agency-head">
+        <h3>Environmental Protection Agency (EPA)</h3>
+        <span class="agency-count">Interior bill tracking</span>
+      </div>
+      <ul class="findings">
+        <li>
+          <span class="badge-new">NEW</span>
+          <div class="finding-body">
+            <p><b>Clean Water Funding Restored:</b> Clean Water Act funding restored to $2.8 billion in latest committee draft, reversing previous cut proposal.</p>
+            <div class="finding-meta">Sept 3, 2026 · House Appropriations Committee draft</div>
+          </div>
+        </li>
+        <li>
+          <div class="finding-body">
+            <p><b>Air Quality Network Expansion:</b> Air quality monitoring network expansion approved for 12 additional states under Interior bill.</p>
+            <div class="finding-meta">Aug 28, 2026 · Committee markup</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="agency">
+      <div class="agency-head">
+        <h3>National Science Foundation (NSF)</h3>
+        <span class="agency-count">CJS Subcommittee</span>
+      </div>
+      <ul class="findings">
+        <li>
+          <span class="badge-new">NEW</span>
+          <div class="finding-body">
+            <p><b>AI Research Initiative Boost:</b> NSF AI research initiative receives $1.2 billion allocation, up from $800 million initially proposed in FY2027 request.</p>
+            <div class="finding-meta">Sept 3, 2026 · Committee draft</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="agency">
+      <div class="agency-head">
+        <h3>Department of State</h3>
+        <span class="agency-count">National Security bill</span>
+      </div>
+      <ul class="findings">
+        <li>
+          <div class="finding-body">
+            <p><b>House Passage:</b> H.R. 8595 (FY2027 National Security, State and Related Programs) passed House on July 15, 2026. Senate consideration and conference negotiations underway.</p>
+            <div class="finding-meta">Jul 15, 2026 · House floor vote</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="agency">
+      <div class="agency-head">
+        <h3>Department of Labor & HHS</h3>
+        <span class="agency-count">Labor/HHS/Education bill</span>
+      </div>
+      <ul class="findings">
+        <li>
+          <div class="finding-body">
+            <p><b>FY2027 Bill Released:</b> House Appropriations Committee released FY2027 Labor, Health and Human Services, Education, and Related Agencies bill on June 4, 2026, with significant focus on education funding and workforce development.</p>
+            <div class="finding-meta">Jun 4, 2026 · House Committee markup</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+
+  <footer class="notes">
+    <p><b>How to read this:</b> The brief tracks 12 FY2027 appropriations bills across 6 House subcommittees. Items marked "NEW" were flagged in the last 3 days. All data sourced from Congress.gov, House/Senate Appropriations Committees, and official budget justifications.</p>
+    <p>Next deadline: December 11, 2026 (CR Expiration). Compiled from congress.gov, House/Senate Appropriations Committee official sites, budget justifications, and current legislative activity.</p>
+  </footer>
+</div>
+
+<script>
+  // Calculate and update deadline counter
+  function updateDeadlineCounter() {
+    const today = new Date('2026-09-03');
+    const deadline = new Date('2026-12-11');
+    const diffTime = Math.abs(deadline - today);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    // Update all instances of the counter
+    const counters = document.querySelectorAll('[data-deadline-counter]');
+    counters.forEach(el => {
+      el.textContent = diffDays;
+    });
+
+    // Also update the banner count
+    const bannerCount = document.querySelector('.deadline-banner .count');
+    if (bannerCount) {
+      bannerCount.textContent = diffDays;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', updateDeadlineCounter);
+</script>
+</body>
+</html>
