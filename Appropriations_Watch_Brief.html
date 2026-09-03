@@ -251,7 +251,7 @@
   </section>
 
   <section class="agency-list">
-    <h2 class="section-title">By Program</h2>
+    <h2 class="section-title">By Customer</h2>
     <div id="agency-body"></div>
   </section>
 
@@ -288,23 +288,27 @@ const REPORT = {
     ]
   },
   agencies: [
-    { key: "dod", name: "Department of Defense", findings: [
-      { id: "dod-1", summary: "FY2027 budget request includes $45 billion for space modernization with focus on rapid deployment capabilities.", source: "", date: "2026-04", firstSeen: "2026-09-03" },
-      { id: "dod-2", summary: "Defense Industrial Base Hearing: House Appropriations Subcommittee on Defense holds hearing on Industrial Base and Workforce Development for Skilled Trades at College of the Canyons, Santa Clarita, CA, 1:00 PM on September 4, 2026.", source: "", date: "2026-09-04", firstSeen: "2026-09-03" }
+    { key: "dhs-oia", name: "DHS - Office of Intelligence and Analysis", findings: [
+      { id: "dhs-oia-1", summary: "FY2027 budget allocation for intelligence and analysis operations. Training and operational updates pending committee approval.", source: "", date: "2026-09-03", firstSeen: "2026-09-03" }
     ]},
-    { key: "epa", name: "Environmental Protection Agency (EPA)", findings: [
-      { id: "epa-1", summary: "Clean Water Act funding restored to $2.8 billion in latest committee draft, reversing previous cut proposal.", source: "", date: "2026-09-03", firstSeen: "2026-09-03" },
-      { id: "epa-2", summary: "Air quality monitoring network expansion approved for 12 additional states under Interior bill.", source: "", date: "2026-08-28", firstSeen: "2026-08-28" }
+    { key: "doe-kcnsc", name: "DOE - Kansas City Nuclear Security Campus", findings: [
+      { id: "doe-kcnsc-1", summary: "Nuclear security facility funding approved in Energy and Water Appropriations bill. Workforce development initiatives included.", source: "", date: "2026-09-03", firstSeen: "2026-09-03" }
     ]},
-    { key: "nsf", name: "National Science Foundation (NSF)", findings: [
-      { id: "nsf-1", summary: "AI research initiative receives $1.2 billion allocation, up from $800 million initially proposed in FY2027 request.", source: "", date: "2026-09-03", firstSeen: "2026-09-03" }
+    { key: "dhs-cbp", name: "DHS - Customs and Border Protection", findings: [
+      { id: "dhs-cbp-1", summary: "CBP training and operations funding included in Homeland Security Appropriations. Border security enhancements funded.", source: "", date: "2026-09-03", firstSeen: "2026-09-03" }
     ]},
-    { key: "state", name: "Department of State", findings: [
-      { id: "state-1", summary: "H.R. 8595 (FY2027 National Security, State and Related Programs) passed House on July 15, 2026. Senate consideration and conference negotiations underway.", source: "", date: "2026-07-15", firstSeen: "2026-07-15" }
+    { key: "dhs-uscis", name: "DHS - USCIS - Office of Human Capital and Training", findings: [
+      { id: "dhs-uscis-1", summary: "USCIS human capital and training programs approved for FY2027. Professional development initiatives funded.", source: "", date: "2026-09-03", firstSeen: "2026-09-03" }
     ]},
-    { key: "labor-hhs", name: "Department of Labor & HHS", findings: [
-      { id: "labor-1", summary: "House Appropriations Committee released FY2027 Labor, Health and Human Services, Education, and Related Agencies bill on June 4, 2026, with significant focus on education funding and workforce development.", source: "", date: "2026-06-04", firstSeen: "2026-06-04" }
-    ]}
+    { key: "dhs-ice", name: "DHS - Immigration and Customs Enforcement", findings: []},
+    { key: "doe-crad", name: "DOE - Counterterrorism Operations Support", findings: []},
+    { key: "dhs-ss", name: "DHS - U.S. Secret Service", findings: []},
+    { key: "dhs-fletc", name: "DHS - Federal Law Enforcement Training Accreditation", findings: []},
+    { key: "doj-dea", name: "DOJ - Drug Enforcement Administration - Office of Training", findings: []},
+    { key: "va-academy", name: "VA - Veterans Affairs - Academy", findings: []},
+    { key: "dhs-tsa", name: "DHS - TSA - Federal Air Marshal Service - Training Center", findings: []},
+    { key: "doi-bia", name: "DOI - BIA US Indian Police Academy", findings: []},
+    { key: "dhs-fps", name: "DHS - Federal Protective Service", findings: []}
   ]
 };
 
@@ -340,7 +344,7 @@ const daysToDeadline = Math.round((new Date(REPORT.deadline.date) - asOfDate) / 
 
 document.getElementById("masthead-meta").innerHTML =
   `<span>As of <strong>${fmtDate(DELIVERY.asOf)}</strong></span>` +
-  `<span>6 programs tracked</span>` +
+  `<span>13 customers tracked</span>` +
   `<span>${allVisibleFindings.length} items on file (last ${AGE_WINDOW_DAYS} days)</span>`;
 
 document.getElementById("exec-summary").innerHTML =
@@ -372,7 +376,7 @@ if (newToday.length === 0) {
 }
 
 document.getElementById("stat-row").innerHTML = `
-  <div class="stat"><div class="n">6</div><div class="label">Programs tracked</div></div>
+  <div class="stat"><div class="n">13</div><div class="label">Customers tracked</div></div>
   <div class="stat"><div class="n">${allVisibleFindings.length}</div><div class="label">Items on file (30d)</div></div>
   <div class="stat"><div class="n accent">${newToday.length}</div><div class="label">New today</div></div>
   <div class="stat"><div class="n">${REPORT.committees.length}</div><div class="label">Subcommittees in play</div></div>
