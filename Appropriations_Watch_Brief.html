@@ -73,15 +73,15 @@
   body {
     color: var(--ink);
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: "Public Sans", -apple-system, "Segoe UI", sans-serif;
     line-height: 1.5;
   }
   .wrap { max-width: 860px; margin: 0 auto; padding: 2.75rem 1.5rem 5rem; }
 
-  h1, h2, h3 { text-wrap: balance; margin: 0; }
+  h1, h2, h3 { font-family: "Source Serif 4", Georgia, serif; text-wrap: balance; margin: 0; font-weight: 600; }
 
   .eyebrow {
-    font-family: ui-monospace, monospace;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
     font-size: 0.72rem;
     letter-spacing: 0.11em;
     text-transform: uppercase;
@@ -113,7 +113,7 @@
   .exec-summary p:last-child { margin-bottom: 0; }
   .exec-summary .next-date {
     margin-top: 1rem; padding-top: 0.9rem; border-top: 1px solid rgba(255,255,255,0.16);
-    font-family: ui-monospace, monospace; font-size: 0.78rem; color: var(--brief-soft);
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.78rem; color: var(--brief-soft);
   }
   .exec-summary .next-date b { color: var(--brief-accent); }
 
@@ -124,7 +124,7 @@
     padding: 0.9rem 1.1rem; border-radius: 3px; margin-bottom: 1.6rem;
   }
   .deadline-banner .count {
-    font-family: ui-monospace, monospace; font-size: 1.5rem; font-weight: 600;
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 1.5rem; font-weight: 600;
     color: var(--gold); font-variant-numeric: tabular-nums; white-space: nowrap;
   }
   .deadline-banner p { margin: 0; font-size: 0.92rem; color: var(--ink-soft); }
@@ -138,7 +138,7 @@
   }
   .delta-banner.quiet { border-left-color: var(--slate); background: var(--paper-raised); }
   .delta-banner .mark {
-    flex: none; font-family: ui-monospace, monospace; font-size: 0.68rem;
+    flex: none; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.68rem;
     letter-spacing: 0.05em; text-transform: uppercase; font-weight: 600;
     color: var(--accent); padding-top: 0.15rem;
   }
@@ -154,7 +154,7 @@
   }
   .stat { background: var(--paper-raised); padding: 0.85rem 1rem; }
   .stat .n {
-    font-family: ui-monospace, monospace; font-size: 1.4rem; font-weight: 600;
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 1.4rem; font-weight: 600;
     font-variant-numeric: tabular-nums;
   }
   .stat .n.accent { color: var(--accent); }
@@ -165,7 +165,7 @@
   .committee-table { width: 100%; overflow-x: auto; }
   table.committees { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
   table.committees th {
-    text-align: left; font-family: ui-monospace, monospace; font-size: 0.7rem;
+    text-align: left; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.7rem;
     letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate);
     border-bottom: 1px solid var(--line); padding: 0.45rem 0.7rem 0.5rem 0;
   }
@@ -194,7 +194,7 @@
   }
   ul.findings li:first-child { border-top: none; }
   .badge-new {
-    flex: none; font-family: ui-monospace, monospace; font-size: 0.62rem;
+    flex: none; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.62rem;
     letter-spacing: 0.05em; background: var(--accent-soft); color: var(--accent);
     border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
     padding: 0.12rem 0.4rem; border-radius: 3px; margin-top: 0.15rem;
@@ -214,6 +214,8 @@
   a { color: var(--focus); }
   :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="wrap">
